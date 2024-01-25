@@ -1,0 +1,57 @@
+<section>
+    <div class="container">
+        <div class="row mt-4">
+           <div>
+                <a href="/admin/add-product" class="add-prdt btn btn-success" style="margin-left: 1154px;" >ADD PRODUCTS</a>
+            </div>
+        </div> 
+        <table class="table mt-5" id="productsTable">          {{!--  id used for datatable seaching (search cheyyumbol work avan vendi) --}}
+            <thead>
+                <tr>
+                 
+                    <th scope="col">TITLE</th>          
+                    <th scope="col">CATEGORY</th>
+                    <th scope="col">PIRCE</th>
+                    <th scope="col">DESCRIPTION</th>
+                    <th>IMAGE</th>
+                    <th>OPTIONS</th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each products}}
+                <tr>
+                    
+                    <td>{{this.name}}</td>
+                    <td>{{this.Category}}</td>
+                     <td>{{this.Price}}</td>
+                    <td>{{this.Discription}}</td>
+                    <td><img style="width: 50px; height: 50px ;" src="/product-images/{{this._id}}.jpg"></td>
+                    <td>
+                        <a href="/admin/edit-product/{{this._id}}" class="btn btn-primary">EDIT</a>
+                        <a href="/admin/delete-product/{{this._id}}" class="btn btn-danger" onclick="return confirm('Are You Want To Delete {{this.name}}')">DELETE</a>
+                    </td>
+                </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    </div>
+</section>
+
+
+
+<style>
+.add-prdt:hover{
+   background-color: black;
+}
+</style>
+
+
+
+{{!-- search button work avan vendi ee script il ulla code use cheyyunnu --}}
+{{!-- website --> DataTables installation      NB: table il <td> and <th> same ayirikkanam--}}
+
+<script>
+ $(function(){
+    $('#productsTable').DataTable();
+ })
+</script>
