@@ -6,7 +6,7 @@ const { request, response } = require('../app');
 const { resolve } = require('mongodb/lib/core/topologies/read_preference');
 const { route } = require('./admin');
 const verifyLogin = (req,res,next)=>{
-  if(req.session.userLoggedIn){
+  if(req.session.user){
     next()
   }else{
     res.redirect('/')
@@ -137,7 +137,7 @@ router.get('/orders',async(req,res)=>{
 
 router.get('/view-order-products/:id',async(req,res)=>{
 let products=await userHelpers.getOrderProducts(req.params.id)
-res.render('user/view-order-products',{user:req.session.usre,products})
+res.render('user/view-order-products',{user:req.session.user,products})
 })
 
 
